@@ -3,22 +3,22 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>PipSms</title>
 <link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
-<meta name="theme-color" content="#0B2B45">
+<meta name="theme-color" content="#0B1219">
 <style>
-:root{--bg:#EEF2F6;--sf:#fff;--tx:#14202B;--mu:#6A7886;--pr:#2B7BBF;--on:#fff;--pip:#FFC83D;--ln:#DDE4EA;--rl:#0B2B45;color-scheme:light}
-@media(prefers-color-scheme:dark){:root{--bg:#0E1621;--sf:#17212B;--tx:#E8EEF3;--mu:#7F91A4;--pr:#2B5278;--on:#fff;--ln:#222F3D;--rl:#08121C;color-scheme:dark}}
+:root{--sf:#fff;--bg:#F1F4F7;--tx:#14202B;--mu:#6A7886;--ln:#E1E7ED;--ac:#2AABEE;--me:#EFFDDE;--mt:#14202B;--ot:#fff;--rl:#0B2B45;--w1:#CFE0EC;--w2:#DDE9F2;--pip:#FFC83D;color-scheme:light}
+@media(prefers-color-scheme:dark){:root{--sf:#17212B;--bg:#0E1621;--tx:#E8EEF3;--mu:#7F91A4;--ln:#0E1621;--ac:#2AABEE;--me:#2B5278;--mt:#fff;--ot:#182533;--rl:#0B1219;--w1:#0E1621;--w2:#132233;color-scheme:dark}}
 *{box-sizing:border-box;margin:0}
 html,body{height:100%;overflow:hidden}
-body{background:var(--bg);color:var(--tx);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{background:var(--sf);color:var(--tx);font:16px/1.35 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 [hidden]{display:none!important}
 button,input{font:inherit;color:inherit}
 button{cursor:pointer}
 .dot{width:12px;height:12px;border-radius:50%;background:var(--pip);display:inline-block;margin-right:6px}
 #auth{height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:24px;max-width:420px;margin:auto}
 #auth h1{font-size:32px}#auth p{color:var(--mu)}
-input{padding:12px;border:1px solid var(--ln);border-radius:10px;background:var(--sf);width:100%}
-.btn{padding:12px;border:0;border-radius:10px;background:var(--pr);color:var(--on);font-weight:600}
-.btn.alt{background:none;color:var(--pr);border:1px solid var(--pr)}
+input{padding:12px;border:1px solid var(--ln);border-radius:12px;background:var(--bg);width:100%;outline:0}
+.btn{padding:12px;border:0;border-radius:12px;background:var(--ac);color:#fff;font-weight:600}
+.btn.alt{background:none;color:var(--ac);border:1px solid var(--ac)}
 #err{color:#E5533D;min-height:20px;font-size:14px}
 #app{height:100%;display:flex;position:relative}
 #rail{width:68px;flex:none;background:var(--rl);display:flex;flex-direction:column;align-items:center;gap:10px;padding:12px 0;overflow-y:auto}
@@ -26,33 +26,46 @@ input{padding:12px;border:1px solid var(--ln);border-radius:10px;background:var(
 .com.on{border-radius:16px}
 .com.on::before{content:"";position:absolute;left:-10px;top:12px;width:4px;height:24px;border-radius:0 4px 4px 0;background:var(--pip)}
 .rb{background:#1E3F5A;font-size:22px}
-#side{flex:1;min-width:0;display:flex;flex-direction:column;background:var(--sf)}
-#side header{padding:14px 16px;border-bottom:1px solid var(--ln);display:flex;align-items:center;justify-content:space-between}
-#side h2{font-size:18px}
-#side header button{background:none;border:0;color:var(--pr);font-weight:600}
-#list{flex:1;overflow:auto;padding:8px}
-.room{display:block;width:100%;text-align:left;padding:12px;border:0;border-radius:10px;background:none}
+#side{flex:1;min-width:0;display:flex;flex-direction:column;background:var(--sf);position:relative}
+.hd{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:56px}
+.hd h2{font-size:19px}
+.hd button{background:none;border:0;color:var(--ac);font-weight:600}
+#list,#pl{flex:1;overflow:auto}
+.room{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 16px;border:0;background:none}
 .room.on{background:var(--bg)}
-.room span{color:var(--mu);margin-right:6px}
-.hint{color:var(--mu);padding:12px}
-#chat{position:absolute;inset:0 0 0 68px;background:var(--bg);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .2s}
+.room>b{font-weight:500}
+.rt{flex:1;min-width:0}
+.rtop{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.rtop b{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rtop small{color:var(--mu);font-size:12px;flex:none}
+.sub{color:var(--mu);font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rtop em{background:var(--ac);color:#fff;border-radius:10px;padding:0 7px;font-size:12px;font-style:normal;flex:none}
+.hint{color:var(--mu);padding:16px}
+.av{width:48px;height:48px;border-radius:50%;flex:none;color:#fff;font-weight:600;display:flex;align-items:center;justify-content:center;font-size:19px}
+.av.s{width:34px;height:34px;font-size:14px}
+#pick{position:absolute;inset:0;background:var(--sf);z-index:5;display:flex;flex-direction:column}
+#pick .hd{justify-content:flex-start}
+#pick .hd button{font-size:22px;color:var(--tx)}
+#q{margin:0 12px 8px;width:calc(100% - 24px)}
+#chat{position:absolute;inset:0 0 0 68px;background:linear-gradient(160deg,var(--w1),var(--w2));display:flex;flex-direction:column;transform:translateX(100%);transition:transform .2s}
 #chat.open{transform:none;inset:0}
 #ci{display:flex;flex-direction:column;height:100%}
-#ci header{display:flex;align-items:center;gap:8px;padding:12px 14px;background:var(--sf);border-bottom:1px solid var(--ln)}
-#ci header button{background:none;border:0;font-size:20px}
-#ci h3{font-size:17px}
-#emp{display:none;margin:auto;color:var(--mu)}
-#msgs{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:6px}
+#ci header{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--sf)}
+#ci header>button{background:none;border:0;font-size:22px;padding:4px 6px}
+#ci h3{font-size:16px;line-height:1.2}
+#ci header small{color:var(--mu);font-size:13px}
+#emp{display:none;margin:auto;color:var(--mu);background:#0003;padding:4px 14px;border-radius:14px}
+#msgs{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:5px;background:radial-gradient(circle,#ffffff10 0 2px,transparent 3px) 0 0/30px 30px}
 .row{display:flex;gap:8px;align-items:flex-end;max-width:85%}
 .row.me{align-self:flex-end}
-.av{width:32px;height:32px;border-radius:50%;flex:none;color:#fff;font-weight:600;display:flex;align-items:center;justify-content:center;font-size:14px}
-.m{padding:7px 12px;border-radius:16px 16px 16px 4px;background:var(--sf);overflow-wrap:anywhere}
-.me .m{background:var(--pr);color:var(--on);border-radius:16px 16px 4px 16px}
-.m b{display:block;font-size:13px;color:var(--pr)}
-.m i{display:block;font-size:11px;opacity:.6;font-style:normal;text-align:right}
-form{display:flex;gap:8px;padding:10px;background:var(--sf);border-top:1px solid var(--ln)}
-form .btn{width:48px;padding:0}
-@media(min-width:700px){#side{flex:none;width:280px;border-right:1px solid var(--ln)}#chat{inset:0 0 0 348px;transform:none}#chat.open{inset:0 0 0 348px}#ci header button{display:none}.nr #ci{display:none}.nr #emp{display:block}}
+.m{padding:6px 11px;border-radius:16px 16px 16px 4px;background:var(--ot);overflow-wrap:anywhere}
+.me .m{background:var(--me);color:var(--mt);border-radius:16px 16px 4px 16px}
+.m b{display:block;font-size:13.5px}
+.m i{display:block;font-size:11px;opacity:.55;font-style:normal;text-align:right}
+form{display:flex;gap:8px;padding:8px;background:var(--sf);align-items:center}
+form input{border-radius:22px;padding:11px 16px}
+form .btn{width:44px;height:44px;padding:0;border-radius:50%;flex:none}
+@media(min-width:700px){#side{flex:none;width:340px;border-right:1px solid var(--ln)}#chat{inset:0 0 0 408px;transform:none}#chat.open{inset:0 0 0 408px}#ci header>button{display:none}.nr #ci{display:none}.nr #emp{display:block}}
 </style></head><body>
 <section id="auth" hidden>
   <h1><span class="dot"></span>PipSms</h1>
@@ -64,22 +77,27 @@ form .btn{width:48px;padding:0}
   <button class="btn alt" onclick="auth(true)">Создать аккаунт</button>
 </section>
 <div id="app" hidden>
-  <aside id="rail"><span class="dot" style="margin:6px 0"></span><div id="cl" style="display:contents"></div><button class="rb" title="Новое сообщество" onclick="newCom()">+</button><button class="rb" title="Выйти" style="margin-top:auto;font-size:16px" onclick="out()">⎋</button></aside>
-  <nav id="side"><header><h2 id="ct"></h2><button onclick="newRoom()">+ Канал</button></header><div id="list"></div></nav>
-  <main id="chat" class="nr"><div id="emp">Выберите канал</div>
-    <div id="ci"><header><button onclick="back()">←</button><h3 id="rt"></h3></header><div id="msgs"></div>
+  <aside id="rail"><div id="cl" style="display:contents"></div><button class="rb" title="Новое сообщество" onclick="newCom()">+</button><button class="rb" title="Выйти" style="margin-top:auto;font-size:16px" onclick="out()">⎋</button></aside>
+  <nav id="side"><div class="hd"><h2 id="ct"></h2><button id="nb"></button></div><div id="list"></div>
+    <div id="pick" hidden><div class="hd"><button onclick="$('#pick').hidden=true">←</button><h2>Контакты</h2></div><input id="q" placeholder="Поиск по нику" oninput="pickList()" autocapitalize="none"><div id="pl"></div></div></nav>
+  <main id="chat" class="nr"><div id="emp">Выберите чат</div>
+    <div id="ci"><header><button onclick="back()">←</button><div class="av s" id="hav"></div><div><h3 id="rt"></h3><small id="rs"></small></div></header><div id="msgs"></div>
     <form id="f"><input id="tx" placeholder="Сообщение" autocomplete="off"><button class="btn">➤</button></form></div></main>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.58.0/dist/umd/supabase.js"></script>
 <script>
 const SB_URL='https://nseqfjpitmchomrumuae.supabase.co',SB_KEY='sb_publishable_cszD4zZZHpgrB9vLyg9yGg_4wJ8NmU0';
 const $=s=>document.querySelector(s),sb=supabase.createClient(SB_URL,SB_KEY);
-let me=null,room=null,ch=null,seen=new Set(),rooms=[],cur=null;
+let me=null,room=null,rooms=[],pf={},last={},unread={},seen=new Set(),mode='@',gch=null;
 const show=id=>['auth','app'].forEach(x=>$('#'+x).hidden=x!==id);
 const err=m=>$('#err').textContent=m||'';
 const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
 const hue=s=>Math.abs([...s].reduce((a,c)=>(a*31+c.charCodeAt(0))|0,7))%360;
 const paint=(e,n)=>{e.style.background=`hsl(${hue(n)} 50% 42%)`;return e};
+const ava=(n,c)=>paint(el('div','av'+(c||''),n[0].toUpperCase()),n);
+const dmName=r=>pf[(r.members||[]).find(x=>x!==me.id)]||'Пользователь';
+const rname=r=>r.dm?dmName(r):r.name;
+const fmt=iso=>{const d=new Date(iso);return d.toDateString()===new Date().toDateString()?d.toLocaleTimeString('ru',{hour:'2-digit',minute:'2-digit'}):d.toLocaleDateString('ru',{day:'2-digit',month:'2-digit'})};
 async function auth(reg){
   const nick=$('#nick').value.trim().toLowerCase(),pw=$('#pw').value;
   if(!/^[a-z0-9_]{3,20}$/.test(nick))return err('Ник: 3–20 символов, латиница, цифры и _');
@@ -90,48 +108,96 @@ async function auth(reg){
   if(!r.data.session)return err('Отключите подтверждение почты в настройках Supabase');
   err();start(r.data.session);
 }
-function start(s){if(!s){show('auth');return}me=s.user;show('app');load()}
-async function load(){
-  const {data}=await sb.from('rooms').select('*').order('id');
-  rooms=data||[];
-  const cs=[...new Set(rooms.map(r=>r.community))];
-  if(!cs.includes(cur))cur=cs[0]||null;
-  render(cs);
+async function start(s){
+  if(!s){show('auth');return}
+  me=s.user;show('app');
+  await Promise.all([loadProfiles(),loadRooms(),loadLast()]);
+  render();sub();
 }
-function render(cs){
+async function loadProfiles(){const {data}=await sb.from('profiles').select('*');pf={};(data||[]).forEach(p=>pf[p.id]=p.nick)}
+async function loadRooms(){const {data}=await sb.from('rooms').select('*').order('id');rooms=data||[]}
+async function loadLast(){
+  const {data}=await sb.from('messages').select('*').order('created_at',{ascending:false}).limit(300);
+  (data||[]).forEach(m=>{if(!last[m.room_id])last[m.room_id]=m});
+}
+function sub(){
+  if(gch)return;
+  gch=sb.channel('all')
+   .on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'},p=>{
+     const m=p.new;last[m.room_id]=m;
+     if(room&&m.room_id===room.id)add(m);else if(m.user_id!==me.id)unread[m.room_id]=(unread[m.room_id]||0)+1;
+     render()})
+   .on('postgres_changes',{event:'INSERT',schema:'public',table:'rooms'},async()=>{await loadProfiles();await loadRooms();render()})
+   .subscribe();
+}
+function item(r){
+  const m=last[r.id],b=el('button','room'+(room&&room.id===r.id?' on':''));
+  const t=el('div','rt'),top=el('div','rtop'),bot=el('div','rtop');
+  top.append(el('b',0,(r.dm?'':'# ')+rname(r)),el('small',0,m?fmt(m.created_at):''));
+  bot.append(el('span','sub',m?(m.user_id===me.id?'Вы: ':(r.dm?'':m.nick+': '))+m.body:'Нет сообщений'));
+  if(unread[r.id])bot.append(el('em',0,unread[r.id]));
+  t.append(top,bot);b.append(r.dm?ava(rname(r)):ava(r.name),t);b.onclick=()=>open(r);return b;
+}
+function render(){
+  const cs=[...new Set(rooms.filter(r=>!r.dm).map(r=>r.community))];
+  if(mode!=='@'&&!cs.includes(mode))mode='@';
   const cl=$('#cl');cl.textContent='';
-  cs.forEach(c=>{const b=paint(el('button','com'+(c===cur?' on':''),c[0].toUpperCase()),c);b.title=c;b.onclick=()=>{cur=c;render(cs)};cl.append(b)});
-  $('#ct').textContent=cur||'PipSms';
+  const hb=el('button','com'+(mode==='@'?' on':''),'💬');hb.style.background='#2AABEE';hb.title='Чаты';hb.onclick=()=>{mode='@';render()};cl.append(hb);
+  cs.forEach(c=>{const b=paint(el('button','com'+(c===mode?' on':''),c[0].toUpperCase()),c);b.title=c;b.onclick=()=>{mode=c;render()};cl.append(b)});
   const l=$('#list');l.textContent='';
-  if(!cur){l.append(el('div','hint','Создайте первое сообщество кнопкой +'));return}
-  rooms.filter(r=>r.community===cur).forEach(r=>{
-    const b=el('button','room'+(room&&room.id===r.id?' on':''));b.append(el('span',0,'#'),document.createTextNode(r.name));b.onclick=()=>open(r);l.append(b)});
+  if(mode==='@'){
+    $('#ct').textContent='Чаты';$('#nb').textContent='✎ Новый';$('#nb').onclick=pick;
+    const dms=rooms.filter(r=>r.dm).sort((a,b)=>(last[b.id]?.created_at||'').localeCompare(last[a.id]?.created_at||''));
+    if(!dms.length)l.append(el('div','hint','Здесь будут ваши личные чаты. Нажмите «Новый» и выберите контакт.'));
+    dms.forEach(r=>l.append(item(r)));
+  }else{
+    $('#ct').textContent=mode;$('#nb').textContent='+ Канал';$('#nb').onclick=newRoom;
+    rooms.filter(r=>!r.dm&&r.community===mode).forEach(r=>l.append(item(r)));
+  }
+}
+async function pick(){$('#pick').hidden=false;$('#q').value='';pickList();await loadProfiles();pickList()}
+function pickList(){
+  const q=$('#q').value.trim().toLowerCase(),l=$('#pl');l.textContent='';
+  Object.entries(pf).filter(([id,n])=>id!==me.id&&n.includes(q)).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([id,n])=>{
+    const b=el('button','room');b.append(ava(n),el('b',0,n));b.onclick=()=>openDM(id);l.append(b)});
+  if(!l.children.length)l.append(el('div','hint','Никого нет. Контакты появляются, когда друзья регистрируются в PipSms.'));
+}
+async function openDM(uid){
+  $('#pick').hidden=true;
+  const name=[me.id,uid].sort().join(':'),find=()=>rooms.find(x=>x.dm&&x.name===name);
+  let r=find();
+  if(!r){
+    const {data,error}=await sb.from('rooms').insert({community:'@dm',name,dm:true,members:[me.id,uid]}).select().single();
+    if(error){await loadRooms();r=find()}else{r=data;rooms.push(r)}
+  }
+  if(!r)return alert('Не удалось открыть чат');
+  mode='@';open(r);
 }
 async function newCom(){
   const n=(prompt('Название сообщества')||'').trim().slice(0,30);if(!n)return;
   const {error}=await sb.from('rooms').insert({community:n,name:'общий'});
   if(error)return alert('Такое сообщество уже есть');
-  cur=n;load();
+  mode=n;await loadRooms();render();
 }
 async function newRoom(){
-  if(!cur)return newCom();
   const n=(prompt('Название канала')||'').trim().slice(0,40);if(!n)return;
-  const {error}=await sb.from('rooms').insert({community:cur,name:n});
+  const {error}=await sb.from('rooms').insert({community:mode,name:n});
   if(error)alert('Такой канал уже есть');
-  load();
+  await loadRooms();render();
 }
 async function open(r){
-  room=r;seen=new Set();$('#rt').textContent='# '+r.name;$('#msgs').textContent='';
-  $('#chat').classList.remove('nr');$('#chat').classList.add('open');render([...new Set(rooms.map(x=>x.community))]);
+  room=r;seen=new Set();unread[r.id]=0;
+  const n=rname(r);
+  $('#rt').textContent=r.dm?n:'# '+n;$('#rs').textContent=r.dm?'личный чат':r.community;
+  const h=$('#hav');h.textContent=r.dm?n[0].toUpperCase():'#';paint(h,n);
+  $('#msgs').textContent='';$('#chat').classList.remove('nr');$('#chat').classList.add('open');render();
   const {data}=await sb.from('messages').select('*').eq('room_id',r.id).order('created_at',{ascending:false}).limit(100);
-  (data||[]).reverse().forEach(add);
-  if(ch)sb.removeChannel(ch);
-  ch=sb.channel('room'+r.id).on('postgres_changes',{event:'INSERT',schema:'public',table:'messages',filter:'room_id=eq.'+r.id},p=>add(p.new)).subscribe();
+  if(room.id===r.id)(data||[]).reverse().forEach(add);
 }
 function add(m){
-  if(seen.has(m.id))return;seen.add(m.id);
+  if(seen.has(m.id)||!room||m.room_id!==room.id)return;seen.add(m.id);
   const mine=m.user_id===me.id,row=el('div','row'+(mine?' me':'')),d=el('div','m');
-  if(!mine){row.append(paint(el('div','av',m.nick[0].toUpperCase()),m.nick));d.append(el('b',0,m.nick))}
+  if(!mine&&!room.dm){row.append(ava(m.nick,' s'));const b=el('b',0,m.nick);b.style.color=`hsl(${hue(m.nick)} 70% 62%)`;d.append(b)}
   d.append(document.createTextNode(m.body));
   d.append(el('i',0,new Date(m.created_at).toLocaleTimeString('ru',{hour:'2-digit',minute:'2-digit'})));
   row.append(d);const box=$('#msgs');box.append(row);box.scrollTop=box.scrollHeight;
@@ -141,10 +207,13 @@ $('#f').onsubmit=async e=>{
   const body=$('#tx').value.trim();if(!body||!room)return;
   $('#tx').value='';
   const {data,error}=await sb.from('messages').insert({room_id:room.id,nick:me.user_metadata.nick,body}).select().single();
-  if(error)alert('Сообщение не отправилось');else add(data);
+  if(error)alert('Сообщение не отправилось');else{add(data);last[data.room_id]=data;render()}
 };
 function back(){$('#chat').classList.remove('open')}
-async function out(){await sb.auth.signOut();me=null;room=null;show('auth')}
+async function out(){
+  if(gch){sb.removeChannel(gch);gch=null}
+  await sb.auth.signOut();me=null;room=null;rooms=[];last={};unread={};show('auth');
+}
 sb.auth.getSession().then(r=>start(r.data.session));
 if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
 </script></body></html>
