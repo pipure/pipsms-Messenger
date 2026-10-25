@@ -5,6 +5,116 @@
 <link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#0E1013">
 <style>
+  /* === Увеличение тач-таргетов === */
+
+/* Иконки в шапке (назад, меню, крестики) */
+.ic{
+  padding:12px;
+  margin-left:-12px;
+  min-width:44px;
+  min-height:44px;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Кнопки нижней навигации */
+#nav{padding:4px 4px 6px}
+#nav button{
+  min-height:56px;
+  padding:6px 0;
+  font-size:12px;
+  gap:4px;
+}
+#nav button svg{width:26px;height:26px}
+
+/* Плавающая кнопка (карандаш / плюс) */
+#fab{
+  width:64px;height:64px;
+  border-radius:20px;
+  right:18px;bottom:96px;
+}
+#fab svg{width:28px;height:28px}
+
+/* Чипы фильтров (Все / Личные / Каналы) */
+.chip{
+  padding:10px 18px;
+  font-size:15.5px;
+  min-height:40px;
+}
+
+/* Строки чатов — выше и удобнее */
+.room{
+  padding:12px 20px;
+  gap:14px;
+  min-height:68px;
+}
+.rtop b{font-size:17px}
+.sub{font-size:15.5px}
+.rtop small{font-size:13.5px}
+
+/* Аватары в списке — крупнее */
+.av{width:56px;height:56px;font-size:21px}
+.av.m{width:44px;height:44px;font-size:17px}
+.av.s{width:36px;height:36px;font-size:14px}
+
+/* Поле поиска */
+#sq{padding-left:16px}
+#sq input{padding:15px 16px 15px 0;font-size:16px}
+#sic svg{width:20px;height:20px}
+
+/* Поле ввода сообщения и кнопки в чате */
+#f{padding:10px 12px;gap:10px}
+#f input{padding:14px 20px;font-size:16px}
+#snd{width:50px;height:50px}
+#snd svg{width:24px;height:24px}
+#att{padding:10px;margin-left:-4px}
+#att svg{width:26px;height:26px}
+
+/* Кнопки в шторках (меню сообщения) */
+.shb{padding:18px;font-size:17px}
+.rx button{font-size:30px;padding:8px 10px}
+
+/* Пункты настроек */
+.opt{padding:16px;min-height:56px;font-size:16.5px}
+.srow{padding:16px;min-height:56px;font-size:16.5px}
+.tg{padding:16px;min-height:56px}
+
+/* Переключатели — крупнее */
+.sw{width:52px;height:32px;border-radius:16px}
+.sw::after{width:26px;height:26px;top:3px;left:3px}
+.sw.on::after{left:23px}
+
+/* Основные кнопки */
+.btn{padding:15px;font-size:16.5px}
+.btn.sm{padding:12px 24px;font-size:16px}
+
+/* Инпуты (вход/пароль) */
+input,textarea{padding:15px 18px;font-size:16.5px}
+
+/* Кнопки в шапке чата */
+.hdr{padding:10px 14px 10px 8px;gap:12px}
+.hdr h3{font-size:18px}
+.hdr small{font-size:14px}
+
+/* Кнопка "ответить" в баре */
+#rbar{padding:10px 14px;font-size:15px}
+
+/* Истории (кружки) */
+#stories{gap:16px;padding:4px 20px 14px}
+.st{width:70px}
+.st span{max-width:70px;font-size:12.5px}
+.st .av{width:64px;height:64px}
+.st u{top:44px;width:22px;height:22px;font-size:15px}
+
+/* Тост */
+.toast{padding:12px 20px;font-size:15px;bottom:110px}
+
+/* Шапка главного экрана */
+#top{padding:16px 16px 8px}
+#top h1{font-size:32px}
+
+/* Подсказки */
+.hint{padding:44px 32px;font-size:15.5px}
 :root{--bg:#fff;--sf:#F4F6F8;--el:#EDF0F3;--tx:#11151A;--mu:#6B7684;--ln:#0000000d;--ac:#2F72F2;--ot:#F0F2F5;--me:#2F6FEB;--red:#E5484D;--ok:#30C46B;color-scheme:light}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0E1013;--sf:#15181D;--el:#1D2127;--tx:#ECEFF3;--mu:#8A94A1;--ln:#ffffff0f;--ac:#5B94FF;--ot:#1C2027;color-scheme:dark}}
 :root[data-theme=dark]{--bg:#0E1013;--sf:#15181D;--el:#1D2127;--tx:#ECEFF3;--mu:#8A94A1;--ln:#ffffff0f;--ac:#5B94FF;--ot:#1C2027;color-scheme:dark}
@@ -604,114 +714,5 @@ $('#tx').addEventListener('input',()=>{if(tch&&Date.now()-tl>2000){tl=Date.now()
 theme(curTheme());
 sb.auth.getSession().then(r=>start(r.data.session));
 if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
-  /* === Увеличение тач-таргетов === */
-
-/* Иконки в шапке (назад, меню, крестики) */
-.ic{
-  padding:12px;
-  margin-left:-12px;
-  min-width:44px;
-  min-height:44px;
-  align-items:center;
-  justify-content:center;
-}
-
-/* Кнопки нижней навигации */
-#nav{padding:4px 4px 6px}
-#nav button{
-  min-height:56px;
-  padding:6px 0;
-  font-size:12px;
-  gap:4px;
-}
-#nav button svg{width:26px;height:26px}
-
-/* Плавающая кнопка (карандаш / плюс) */
-#fab{
-  width:64px;height:64px;
-  border-radius:20px;
-  right:18px;bottom:96px;
-}
-#fab svg{width:28px;height:28px}
-
-/* Чипы фильтров (Все / Личные / Каналы) */
-.chip{
-  padding:10px 18px;
-  font-size:15.5px;
-  min-height:40px;
-}
-
-/* Строки чатов — выше и удобнее */
-.room{
-  padding:12px 20px;
-  gap:14px;
-  min-height:68px;
-}
-.rtop b{font-size:17px}
-.sub{font-size:15.5px}
-.rtop small{font-size:13.5px}
-
-/* Аватары в списке — крупнее */
-.av{width:56px;height:56px;font-size:21px}
-.av.m{width:44px;height:44px;font-size:17px}
-.av.s{width:36px;height:36px;font-size:14px}
-
-/* Поле поиска */
-#sq{padding-left:16px}
-#sq input{padding:15px 16px 15px 0;font-size:16px}
-#sic svg{width:20px;height:20px}
-
-/* Поле ввода сообщения и кнопки в чате */
-#f{padding:10px 12px;gap:10px}
-#f input{padding:14px 20px;font-size:16px}
-#snd{width:50px;height:50px}
-#snd svg{width:24px;height:24px}
-#att{padding:10px;margin-left:-4px}
-#att svg{width:26px;height:26px}
-
-/* Кнопки в шторках (меню сообщения) */
-.shb{padding:18px;font-size:17px}
-.rx button{font-size:30px;padding:8px 10px}
-
-/* Пункты настроек */
-.opt{padding:16px;min-height:56px;font-size:16.5px}
-.srow{padding:16px;min-height:56px;font-size:16.5px}
-.tg{padding:16px;min-height:56px}
-
-/* Переключатели — крупнее */
-.sw{width:52px;height:32px;border-radius:16px}
-.sw::after{width:26px;height:26px;top:3px;left:3px}
-.sw.on::after{left:23px}
-
-/* Основные кнопки */
-.btn{padding:15px;font-size:16.5px}
-.btn.sm{padding:12px 24px;font-size:16px}
-
-/* Инпуты (вход/пароль) */
-input,textarea{padding:15px 18px;font-size:16.5px}
-
-/* Кнопки в шапке чата */
-.hdr{padding:10px 14px 10px 8px;gap:12px}
-.hdr h3{font-size:18px}
-.hdr small{font-size:14px}
-
-/* Кнопка "ответить" в баре */
-#rbar{padding:10px 14px;font-size:15px}
-
-/* Истории (кружки) */
-#stories{gap:16px;padding:4px 20px 14px}
-.st{width:70px}
-.st span{max-width:70px;font-size:12.5px}
-.st .av{width:64px;height:64px}
-.st u{top:44px;width:22px;height:22px;font-size:15px}
-
-/* Тост */
-.toast{padding:12px 20px;font-size:15px;bottom:110px}
-
-/* Шапка главного экрана */
-#top{padding:16px 16px 8px}
-#top h1{font-size:32px}
-
-/* Подсказки */
-.hint{padding:44px 32px;font-size:15.5px}
+  
 </script></body></html>
